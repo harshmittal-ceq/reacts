@@ -1,9 +1,13 @@
 import React from "react";
 import { CDN_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
+
 const RestaurantCard = (props) =>{
     const {resData} = props;
-    const {name,cuisines,avgRating,costForTwo,deliveryTime,cloudinaryImageId,sla}=resData?.info;
+    const {name,cuisines,avgRating,costForTwo,id,cloudinaryImageId,sla}=resData?.info;
+
     return (
+        <Link to={`/restaurant/${id}`}>
         <div className="res-card" style={{backgroundColor: "#f0f0f0"}}>
             <img 
                 className="res-logo"
@@ -16,6 +20,7 @@ const RestaurantCard = (props) =>{
             <h4>{costForTwo}</h4>
             <h4>{sla?.slaString}</h4>
         </div>
+        </Link>
     )
 }
 

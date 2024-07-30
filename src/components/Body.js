@@ -1,29 +1,21 @@
 import { useState,useEffect } from 'react'
 import RestaurantCard from './RestaurantCard'
 import Shimmer from './Shimmer'
+import useOnlineStatus from '../utils/useOnlineStatus'
+import useRestaurantMenu from '../utils/useRestaurantMenu'
+import useRestaurantList from '../utils/useRestaurantList'
 
 const Body = () => {
   	//local state variable super powerful variable
-	const [listOfRestaurants,setListOfRestaurants] = useState([])
-	const [filteredRestaurant,setFilteredRestaurant] = useState([])
 	const [searchText,setSearchText] = useState("");
 
-	//Whenever state variables update, react triggers a reconcialiation cycle(re-renders the component)
-	useEffect(()=>{
-		fetchData(true);
-	},[])
+	const onlineStatus = useOnlineStatus();
 
-	const fetchData= async (a)=>{
-		const data = await fetch(
-			"https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-		)
-
-		const json = await data.json();
-		console.log("data",json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
-		//Optional chaining
-		setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-		setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+	if(onlineStatus===false){
+		return <h1>Looks like you are offline!! Please check your internet connection</h1>
 	}
+
+	const {listOfRestaurants,filteredRestaurant}= useRestaurantList()
 
 	//conditional rendering
 	return listOfRestaurants.length===0 ? (
