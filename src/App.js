@@ -17,7 +17,7 @@ import RestaurantMenu from "./components/RestaurantMenu";
 //On demand loading 
 
 const Grocery = lazy(()=>import("./components/Grocery"));
-const ABout = lazy(()=>import("./components/About"))
+const About = lazy(()=>import("./components/About"))
 //not using keys (not accpetable) (worst) <<<<<<< index as key(average) <<<<<<<<<<<<< unique id (best)
 const AppLayout = () => {
     return (
