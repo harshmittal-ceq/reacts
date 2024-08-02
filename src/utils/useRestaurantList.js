@@ -14,7 +14,6 @@ const useRestaurantList=()=>{
 		)
 
 		const json = await data.json();
-		console.log("data",json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
 		//Optional chaining
 		setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 		setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
