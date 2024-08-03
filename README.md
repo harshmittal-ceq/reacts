@@ -56,3 +56,11 @@
 
 # Must Read
  - https://github.com/acdlite/react-fiber-architecture?tab=readme-ov-file
+
+# Redux Toolkit
+ -  Install @reduxjs/toolkit and react-redux
+ - Build our store
+ - connect our store to app
+ - slice (cartslice)
+ - dispatch(action)
+ - selector
